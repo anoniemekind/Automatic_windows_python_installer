@@ -1,32 +1,30 @@
 import pygame
-import sys
+import numpy as np
+#import selenium #this is for automating broswer activities (datascraping)
+import sys #also not available on numworks
 
-# ----------------------------
-# INIT (NumWorks resolution)
-# ----------------------------
+
+#NumWorks resolution
 W, H = 320, 222
 
 pygame.init()
 screen = pygame.display.set_mode((W, H))
 clock = pygame.time.Clock()
 
-# ----------------------------
-# KANDINSKY (functions)
-# ----------------------------
+
+#KANDINSKY (functions)
 def fill_rect(x, y, w, h, color):
     pygame.draw.rect(screen, color, (x, y, w, h))
 
 def set_pixel(x, y, color):
     screen.set_at((x, y), color)
 
-def draw_string(text, x, y, color=(0, 0, 0)):
+def draw_string(text, x, y, text_color, bg_color):
     font = pygame.font.SysFont("Arial", 16)
-    surf = font.render(text, True, color)
+    surf = font.render(text, True, text_color, bg_color)
     screen.blit(surf, (x, y))
 
-# ----------------------------
-# ION (constants + function)
-# ----------------------------
+#ION (constants + function)
 KEY_LEFT = 0
 KEY_UP = 1
 KEY_DOWN = 2
@@ -75,36 +73,41 @@ def keydown(key):
     keys = pygame.key.get_pressed()
     return keys[_keymap.get(key, 0)]
 
-# ----------------------------
-# BASIC LOOP (example usage)
-# ----------------------------
-x, y = 150, 100
+#NUMWORKS INIT CODE STARTS HERE----------------------------------------
+fps = 50
+delta = 1 / fps
+
+x = 150
+y = 100
+
+#NUMWORKS INIT CODE ENDS HERE----------------------------------------
 
 while True:
+    #be able to close pygame window on computer
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
 
-    #NUMWORKS SCRIPT STARTS HERE----------------------------------------
+    #NUMWORKS FOREVER LOOP CODE STARTS HERE----------------------------------------
 
     screen.fill((0, 0, 0))
 
     # Example movement
     if keydown(KEY_LEFT):
-        x -= 2
+        x -= 120 * delta
     if keydown(KEY_RIGHT):
-        x += 2
+        x += 120 * delta
     if keydown(KEY_UP):
-        y -= 2
+        y -= 120 * delta
     if keydown(KEY_DOWN):
-        y += 2
+        y += 120 * delta
 
-    fill_rect(x, y, 20, 20, (0, 255, 255))
+    fill_rect(int(x), int(y), 20, 20, (0, 255, 255))
 
-    #NUMWORKS SCRIPT ENDS HERE----------------------------------------
+    #NUMWORKS FOREVER LOOP CODE ENDS HERE----------------------------------------
 
     #update pygame frame not pastable in numworks
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(fps)
