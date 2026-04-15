@@ -1,8 +1,6 @@
 import pygame
 import numpy as np
-#import selenium #this is for automating broswer activities (datascraping)
-import sys #also not available on numworks
-
+import sys
 
 #NumWorks resolution
 W, H = 320, 222
@@ -74,6 +72,7 @@ def keydown(key):
     return keys[_keymap.get(key, 0)]
 
 #NUMWORKS INIT CODE STARTS HERE----------------------------------------
+
 fps = 50
 delta = 1 / fps
 
@@ -88,7 +87,6 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-
 
     #NUMWORKS FOREVER LOOP CODE STARTS HERE----------------------------------------
 
