@@ -27,6 +27,5 @@ for i in range(100):
     cookie.click()
     time.sleep(0.01)  # small delay so it doesn't break
 
-
 # Optional: close browser
 # driver.quit()
