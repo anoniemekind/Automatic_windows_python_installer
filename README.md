@@ -1,1 +1,1 @@
-numworks_emulator.py is a template script that you can delete if you want to.
+You can delete the python files if you want to.
